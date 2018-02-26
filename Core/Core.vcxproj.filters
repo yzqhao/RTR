@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{9ea68960-189f-456e-a9b4-b3629566473e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Matrix.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="type.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Frustum.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane3d.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Polyon4D.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreMath.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex4D.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Object4D.h">
+      <Filter>core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Light.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreMath.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Frustum.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
