@@ -121,7 +121,7 @@ namespace RTR
 								std::size_t ambientIndex = info.find("ambient");
 								if (ambientIndex == 0)
 								{
-									sscanf_s(info.c_str(), "%s %f %f %f", temp,
+									sscanf(info.c_str(), "%s %f %f %f", temp,
 											&materail->ambient.r, 
 											&materail->ambient.g, 
 											&materail->ambient.b);
@@ -133,7 +133,7 @@ namespace RTR
 								std::size_t diffuseIndex = info.find("diffuse");
 								if (diffuseIndex == 0)
 								{
-									sscanf_s(info.c_str(), "%s %f %f %f", temp, 
+									sscanf(info.c_str(), "%s %f %f %f", temp,
 											&materail->diffuse.r, 
 											&materail->diffuse.g, 
 											&materail->diffuse.b);
@@ -144,7 +144,7 @@ namespace RTR
 								std::size_t specularIndex = info.find("specular");
 								if (specularIndex == 0)
 								{
-									sscanf_s(info.c_str(), "%s %f %f %f", temp,
+									sscanf(info.c_str(), "%s %f %f %f", temp,
 											&materail->specular.r, 
 											&materail->specular.g, 
 											&materail->specular.b);
@@ -156,7 +156,7 @@ namespace RTR
 								if (textureIndex == 0)
 								{
 									char textureName[64];
-									sscanf_s(info.c_str(), "%s %s", temp, textureName);
+									sscanf(info.c_str(), "%s %s", temp, textureName);
 									materail->bitmap = new Bitmap(textureName);
 									continue;
 								}

@@ -11,9 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D0B0C8B0-372F-4EF8-A51D-F11EE7007F4E}</ProjectGuid>
-    <RootNamespace>RTR</RootNamespace>
-    <ProjectName>Core</ProjectName>
+    <ProjectGuid>{027DE798-8F6E-4C4E-B378-4F4532AECD25}</ProjectGuid>
+    <RootNamespace>Engine</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -39,15 +38,13 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(IncludePath)</IncludePath>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -68,30 +65,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Color.h" />
-    <ClInclude Include="Core.h" />
-    <ClInclude Include="CoreMath.h" />
-    <ClInclude Include="Frustum.h" />
-    <ClInclude Include="Graphics.h" />
-    <ClInclude Include="Light.h" />
-    <ClInclude Include="Material.h" />
-    <ClInclude Include="Object4D.h" />
-    <ClInclude Include="Plane3d.h" />
-    <ClInclude Include="Polyon4D.h" />
-    <ClInclude Include="type.h" />
-    <ClInclude Include="Util.h" />
-    <ClInclude Include="Matrix.h" />
-    <ClInclude Include="Vector2.h" />
-    <ClInclude Include="Vector3.h" />
-    <ClInclude Include="Vertex4D.h" />
+    <ProjectReference Include="..\Core\Core.vcxproj">
+      <Project>{d0b0c8b0-372f-4ef8-a51d-f11ee7007f4e}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core.cpp" />
-    <ClCompile Include="CoreMath.cpp" />
-    <ClCompile Include="Frustum.cpp" />
-    <ClCompile Include="Graphics.cpp" />
-    <ClCompile Include="Light.cpp" />
-    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="GameWindow.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="MeshUtil.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Canvas.h" />
+    <ClInclude Include="GameWindow.h" />
+    <ClInclude Include="InputListener.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshUtil.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="OgreMeshInfo.h" />
+    <ClInclude Include="SceneManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
