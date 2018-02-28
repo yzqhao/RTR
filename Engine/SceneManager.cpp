@@ -150,8 +150,6 @@ namespace RTR
 		if (mTerrainMesh)
 			SafeDelete(mTerrainMesh);
 
-		//Log("Loading Terrain HeightMap : #%s Texture : ...", heightMapFileName.c_str(), textureFileName.c_str());
-
 		Bitmap *heigthMap = new Bitmap(heightMapFileName);
 
 		if (!heigthMap->isValid() ||

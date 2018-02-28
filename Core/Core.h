@@ -106,7 +106,6 @@ namespace RTR
 	// 光照计算
 	// 光照计算只能在世界坐标系消除背面之后或者在摄像机坐标系中进行
 	void Light_PolyonF4D(PolyonF4D *poly, Frustum *camera);
-	void Light_RenderList4D(RenderList4D *renderList, Frustum *camera);
 
 	// 摄像机坐标系转换为透视坐标系
 	void Camera_To_Perspective_Object4D(Object4D *obj, Frustum *camera);
@@ -127,7 +126,6 @@ namespace RTR
 	void World_To_Screen_RenderList4D(RenderList4D *renderList, Frustum *camera);
 
 	// 渲染线框模型
-	void Draw_Object4D_Wire(Object4D *obj);
 	void Draw_RenderList4D_Wire(RenderList4D *renderList);
 
 	// 渲染实体模型(无实现绘图)

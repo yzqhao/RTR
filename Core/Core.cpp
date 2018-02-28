@@ -592,18 +592,6 @@ namespace RTR
 		}
 	}
 
-	void Light_RenderList4D(RenderList4D *renderList, Frustum *camera)
-	{
-		PolyonF4D *poly = NULL;
-
-		for (RenderList4D::Itr itr = renderList->polyData.begin();
-			itr != renderList->polyData.end(); ++itr)
-		{
-			poly = &(*itr);
-			Light_PolyonF4D(poly, camera);
-		}
-	}
-
 	void Camera_To_Perspective_Object4D(Object4D *object, Frustum *camera)
 	{
 		if (!object)
@@ -813,44 +801,6 @@ namespace RTR
 		// 在摄像机坐标系中对渲染列表的多变性进行深度排序
 		// 这里基于这样一个事实, 即虽然X,Y坐标发生了变化, 但是Z坐标依旧是之前摄像机坐标系下的Z值
 		Sort_RenderList4D(renderList);
-	}
-
-	void Draw_Object4D_Wire(Object4D *object)
-	{
-		if (!object)
-			return;
-
-		Object4D *obj = object;
-		while (obj)
-		{
-			for (s32 i = 0; i < obj->polyonNumber; i++)
-			{
-				if ((obj->polyonList[i].state & EPOLY_STATE_ACTIVE) &&
-					!(obj->polyonList[i].state & EPOLY_STATE_CLIPPED) &&
-					!(obj->polyonList[i].state & EPOLY_STATE_BACKFACE))
-				{
-					s32 index0 = obj->polyonList[i].verIndex[0];
-					s32 index1 = obj->polyonList[i].verIndex[1];
-					s32 index2 = obj->polyonList[i].verIndex[2];
-
-					Graphics::drawLine(obj->transformList[index0]._x, obj->transformList[index0]._y,
-						obj->transformList[index1]._x, obj->transformList[index1]._y,
-						Color(obj->polyonList[i].color));
-					Graphics::drawLine(obj->transformList[index1]._x, obj->transformList[index1]._y,
-						obj->transformList[index2]._x, obj->transformList[index2]._y,
-						Color(obj->polyonList[i].color));
-					Graphics::drawLine(obj->transformList[index0]._x, obj->transformList[index0]._y,
-						obj->transformList[index2]._x, obj->transformList[index2]._y,
-						Color(obj->polyonList[i].color));
-				}
-
-				// 绘制完毕, 在这里恢复多边形, 清除背面标示
-				obj->polyonList[i].state = EPOLY_STATE_ACTIVE;
-			}
-
-			obj->state = EOBJECT_STATE_ACTIVE;
-			obj = obj->nextObject;
-		}
 	}
 
 	void Draw_RenderList4D_Wire(RenderList4D *renderList)
