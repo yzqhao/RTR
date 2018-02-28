@@ -58,7 +58,7 @@ namespace RTR
 		Mesh *clone();
 
 	protected:
-		friend class ESceneManager;
+		friend class SceneManager;
 		Mesh();
 		Mesh(const std::string &name, const std::string &meshName);
 

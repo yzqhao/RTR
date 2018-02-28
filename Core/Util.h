@@ -3,6 +3,7 @@
 #define _CORE_UTIL_H_
 
 #include "type.h"
+#include <sstream>
 
 #define SafeDelete(ptr) if (ptr) { delete ptr; ptr = 0; }
 #define SafeDeleteArray(ptr) if (ptr) { delete [] ptr; ptr = 0; }
@@ -45,6 +46,31 @@ namespace RTR
 
 	const std::string	DefaultPath = "Media/";
 	static std::string GetPath(const std::string& file){ return DefaultPath + file;}
+
+	inline s32 RandomInt(s32 from = 0, s32 to = 10)
+	{
+		s32 ran = rand() % (to - from + 1) + from;
+		return ran;
+	}
+
+	inline std::string IntToString(f32 num)
+	{
+		std::stringstream ss;
+		ss << num;
+		std::string re;
+		ss >> re;
+		return re;
+	}
+
+	inline s32 StringToInt(const std::string &str)
+	{
+		return atoi(str.c_str());
+	}
+
+	inline f32 StringToFloat(const std::string &str)
+	{
+		return (f32)atof(str.c_str());
+	}
 
 	// 将给定的字符串两端的空白字符删除
 	inline std::string Trim(const std::string &msg)

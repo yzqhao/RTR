@@ -10,13 +10,13 @@
 namespace RTR
 {
 	// 各种资源管理类
-	class ESceneManager
+	class SceneManager
 	{
 		typedef std::map<std::string, Mesh*>::iterator MeshIter;
 
 	public:
-		ESceneManager();
-		~ESceneManager();
+		SceneManager();
+		~SceneManager();
 
 		// 绘制文字
 		void drawString(const std::string &str, s32 x, s32 y, const Color &c = Color(255, 255, 255));

@@ -3,14 +3,14 @@
 
 namespace RTR
 {
-	ESceneManager::ESceneManager() : mLightEnable(true), mVisibleObjectNumber(0),
+	SceneManager::SceneManager() : mLightEnable(true), mVisibleObjectNumber(0),
 		mVisiblePolyonNumber(0), mTotalPolyonNumber(0), mTerrainMesh(NULL)
 	{
 		mCamera = new Camera();
 		mRenderList = new RenderList4D;
 	}
 
-	ESceneManager::~ESceneManager()
+	SceneManager::~SceneManager()
 	{
 		for (MeshIter iter = mMeshs.begin(); iter != mMeshs.end(); ++iter)
 			SafeDelete(iter->second);
@@ -23,13 +23,13 @@ namespace RTR
 		SafeDelete(mRenderList);
 	}
 
-	void ESceneManager::drawString(const std::string &str, s32 x, s32 y, const Color &c)
+	void SceneManager::drawString(const std::string &str, s32 x, s32 y, const Color &c)
 	{
 		Graphics::drawString(str, x, y, c);
 	}
 
 	// 创建一个模型实体
-	Mesh* ESceneManager::createMesh(const std::string &name, const std::string &meshName)
+	Mesh* SceneManager::createMesh(const std::string &name, const std::string &meshName)
 	{
 		MeshIter iter = mMeshs.find(name);
 		if (iter == mMeshs.end())
@@ -55,7 +55,7 @@ namespace RTR
 		return iter->second;
 	}
 
-	void ESceneManager::clearMesh()
+	void SceneManager::clearMesh()
 	{
 		for (MeshIter iter = mMeshs.begin(); iter != mMeshs.end(); ++iter)
 			SafeDelete(iter->second);
@@ -64,7 +64,7 @@ namespace RTR
 	}
 
 	// 获取指定的模型实体
-	Mesh* ESceneManager::getMesh(const std::string &name)
+	Mesh* SceneManager::getMesh(const std::string &name)
 	{
 		MeshIter iter = mMeshs.find(name);
 		if (iter == mMeshs.end())
@@ -75,7 +75,7 @@ namespace RTR
 	}
 
 	// 销毁指定的模型实体
-	void ESceneManager::destroyMesh(const std::string&name)
+	void SceneManager::destroyMesh(const std::string&name)
 	{
 		MeshIter iter = mMeshs.find(name);
 		if (iter != mMeshs.end())
@@ -84,7 +84,7 @@ namespace RTR
 	}
 
 	// 指定开启/关闭灯光(全局)
-	void ESceneManager::enableLights(bool enable)
+	void SceneManager::enableLights(bool enable)
 	{
 		mLightEnable = enable;
 		for (int i = 0; i < GetLightSize(); i++)
@@ -92,29 +92,21 @@ namespace RTR
 	}
 
 	// 创建一盏灯光
-	Light* ESceneManager::createLight(LIGHT_TYPE lightType)
+	Light* SceneManager::createLight(LIGHT_TYPE lightType)
 	{
 		s32 light = CreateLight(lightType);
 		return getLight(light);
 	}
 
 	// 获得一个灯光, 如果灯光不存在, 则返回NULL
-	Light*	ESceneManager::getLight(s32 id)
+	Light*	SceneManager::getLight(s32 id)
 	{
 		return GetLight(id);
 	}
 
 	// 更新
-	void ESceneManager::update()
+	void SceneManager::update()
 	{
-		//camera->update();
-
-		//Inert_Object4D_To_RenderList4D(renderList, object1->getObject(), TRANSFORM_TRANS, true);
-		//Inert_Object4D_To_RenderList4D(renderList, object->getObject(), TRANSFORM_TRANS, true);
-
-		//Local_To_World_RenderList4D(renderList, vector3df::ZERO, TRANSFORM_TRANS);
-		//World_To_Screen_RenderList4D(renderList, camera->getFrustum());
-
 		mVisibleObjectNumber = 0;
 		mTotalPolyonNumber = 0;
 
@@ -152,7 +144,7 @@ namespace RTR
 			Draw_RenderList4D_Teture_Solid(mRenderList);
 	}
 
-	Mesh* ESceneManager::createTerrain(const std::string& heightMapFileName,
+	Mesh* SceneManager::createTerrain(const std::string& heightMapFileName,
 		const std::string &textureFileName, f32 uTitle, f32 vTitle, f32 blockSize)
 	{
 		if (mTerrainMesh)

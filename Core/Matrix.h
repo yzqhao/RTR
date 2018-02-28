@@ -101,8 +101,8 @@ namespace RTR
 	inline Matrix& Matrix::operator*=(const Matrix& other)
 	{
 		f32 newMatrix[16];
-		const f32* m1 = _m;
-		const f32* m2 = other._m;
+		const f32* m1 = other._m;
+		const f32* m2 = _m;
 
 		// 0   1   2   3
 		// 4   5   6   7
@@ -139,8 +139,8 @@ namespace RTR
 	inline Matrix Matrix::operator*(const Matrix& other) const
 	{
 		Matrix tmtrx;
-		const f32* m1 = _m;
-		const f32* m2 = other._m;
+		const f32* m1 = other._m;
+		const f32* m2 = _m;
 		f32* m3 = tmtrx._m;
 
 		// 0   1   2   3

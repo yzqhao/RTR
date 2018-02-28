@@ -4,6 +4,7 @@
 
 #include "type.h"
 #include <iostream>
+#include <cmath>
 
 namespace RTR
 {
@@ -50,6 +51,17 @@ namespace RTR
 		T dotProduct(const Vector3<T>& other) const
 		{
 			return _x*other._x + _y*other._y + _z*other._z;
+		}
+
+		inline f32 angleBetween(const Vector3<T>&right) const
+		{
+			f32 lenProduct = getLength() * right.getLength();
+
+			if (lenProduct < (f32)(1E-6))
+				lenProduct = (f32)(1E-6);
+
+			f32 f = dotProduct(right) / lenProduct;
+			return acos(f);
 		}
 		
 		//! Normalizes the vector.

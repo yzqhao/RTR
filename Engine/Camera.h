@@ -47,7 +47,7 @@ namespace RTR
 		Frustum *getFrustum() const { return mFrustum; }
 
 	protected:
-		friend class ESceneManager;
+		friend class SceneManager;
 		Camera();
 
 		Frustum	*mFrustum;

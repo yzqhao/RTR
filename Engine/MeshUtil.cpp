@@ -203,8 +203,8 @@ namespace RTR
 					vex.v = vertexArray[i + 7];
 
 					// 这里对u，v坐标进行限制在[0, 1]之间
-					//vex.u	= std::abs(vex.u - (EInt)vex.u);
-					//vex.v	= std::abs(vex.v - (EInt)vex.v);
+					//vex.u	= std::abs(vex.u - (s32)vex.u);
+					//vex.v	= std::abs(vex.v - (s32)vex.v);
 
 					curObject->localList.push_back(vex);
 					curObject->transformList.push_back(vex);

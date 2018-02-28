@@ -166,7 +166,7 @@ namespace RTR
 		return true;
 	}
 
-	void Graphics::setPixel(s32 x, s32 y, /*EFloat z, */const Color &c)
+	void Graphics::setPixel(s32 x, s32 y, /*f32 z, */const Color &c)
 	{
 		// 这里本来应该计算z值,但是为了避免对Image像素的读取, 我将z检查分离了出来
 		// 所以, 在调用setPixel之前应该先检测checkZ, 返回true在调用setPixel
