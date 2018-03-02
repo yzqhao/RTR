@@ -33,6 +33,7 @@ namespace RTR
 		~GameManager();
 
 		// 开始游戏
+		bool init(std::string mapName);
 		void startGame(s32 maxEnemyNumber = 10);
 		bool isGameBegin() const { return mMaxEnemyNumber > 0; }
 		// 是否结束游戏
@@ -76,6 +77,8 @@ namespace RTR
 
 		// 更新
 		void update();
+
+		void showInfo(bool showHelp);
 
 	protected:
 		SceneManager					*mScene;

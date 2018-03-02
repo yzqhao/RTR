@@ -7,7 +7,7 @@
 
 namespace RTR
 {
-	// 游戏实体类, EGame相当于一个关卡, 有接受输入控制和绘制的功能
+	// 游戏实体类, Game相当于一个关卡, 有接受输入控制和绘制的功能
 	class Game : public Canvas, public InputListener
 	{
 	public:
@@ -33,16 +33,10 @@ namespace RTR
 		void showInfo();
 
 	protected:
-		s32					currentObjectNum;
-		s32					visiblePolyons;
-
 		bool					showHelp;
 
-		class Camera			*camera;
 		class Mesh				*plane;
 
-		class SceneManager		*scene;
-		class PlayerController	*player;
 		class GameManager		*gameMgr;
 
 		s32					mLogicX, mLogicZ;

@@ -15,7 +15,6 @@ namespace RTR
 	};
 
 	// 角色控制器, 控制角色模型和绑定摄像机
-	class SceneManager;
 	class GameManager;
 	class PlayerController
 	{
@@ -40,15 +39,12 @@ namespace RTR
 
 	private:
 		friend class GameManager;
-		PlayerController(GameManager *gameMgr);
+		PlayerController(Camera* camera, GameManager* gameManager);
 
 	protected:
-		SceneManager	*mScene;
-		GameManager	*mGameMgr;
 		Tank			*mTank;
 		Camera			*mCamera;
 		s32			mCurDir;
-
 		s32			mFireDir;
 	};
 }

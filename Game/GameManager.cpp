@@ -23,7 +23,7 @@ namespace RTR
 		mX(0), mZ(0), mTerrainMesh(NULL), mCurrentEnemyNumber(0), mMaxEnemyNumber(0),
 		mVisibleEnemyNumber(3)
 	{
-		mMainPlayer = new PlayerController(this);
+		mMainPlayer = new PlayerController(scene->getCamera(), this);
 		mMainPlayer->setPosition(InitPosition);
 
 		Bullet *bullet = new Bullet(NULL, "RocketBullet.mesh", this);
@@ -41,6 +41,19 @@ namespace RTR
 			SafeDelete(*itr);
 		mBullets.clear();
 		mTanks.clear();
+	}
+
+	bool GameManager::init(std::string mapName)
+	{
+		Light *light = mScene->createLight(LIGHT_DIRECTION);
+		light->diffuse = Color(255, 255, 255);
+		light->direction = vector3df(-1, -1, -1);
+		light->shadowFactor = 0.5f;
+		light->power = 1.5f;
+
+		loadMap(mapName);
+
+		return true;
 	}
 
 	void GameManager::startGame(s32 maxEnemyNumber)
@@ -134,6 +147,7 @@ namespace RTR
 		}
 
 		mMainPlayer->update();
+		mScene->update();
 	}
 
 	void GameManager::changeMap(const std::string& mapName)
@@ -157,21 +171,21 @@ namespace RTR
 		mScene->clearMesh();
 
 		// 新建角色
-		mMainPlayer = new PlayerController(this);
+		mMainPlayer = new PlayerController(mScene->getCamera(), this);
 		mMainPlayer->setPosition(InitPosition);
 
 		// 加载场景
 		loadMap(mapName);
 	}
 
-	std::string getBlock(const std::string &line, char ltip, char rtip)
+	static std::string getBlock(const std::string &line, char ltip, char rtip)
 	{
 		s32 beg = line.find(ltip);
 		s32 end = line.rfind(rtip);
 		return line.substr(beg + 1, end - beg - 1);
 	}
 
-	vector3df getPos(const std::string &line)
+	static vector3df getPos(const std::string &line)
 	{
 		// <Position X="-49.649979" Y="4.247236" Z="-5.005510" />
 		s32 xb = line.find("X");
@@ -185,7 +199,7 @@ namespace RTR
 		return vector3df(StringToFloat(xs), StringToFloat(ys), StringToFloat(zs));
 	}
 
-	void getXZ(const std::string& line, s32 &x, s32 &z, f32 &blockSize)
+	static void getXZ(const std::string& line, s32 &x, s32 &z, f32 &blockSize)
 	{
 		// <Grid X="15" Z="14" Size="10" />
 		s32 xb = line.find("X");
@@ -201,7 +215,7 @@ namespace RTR
 		blockSize = StringToFloat(ss);
 	}
 
-	void getValue(const std::string& line, s32 &x, s32 &z, s32 &value)
+	static void getValue(const std::string& line, s32 &x, s32 &z, s32 &value)
 	{
 		// <Map X="6" Z="2" Value="0" />
 		s32 xb = line.find("X");
@@ -220,8 +234,6 @@ namespace RTR
 	bool GameManager::loadMap(const std::string& mapName)
 	{
 		mCurMap = mapName;
-
-		//Log("Loading map #%s...", mapName.c_str());
 
 		mCollisionValue.clear();
 		mCollisionMeshs.clear();
@@ -325,8 +337,6 @@ namespace RTR
 
 		in.close();
 
-		//Log("Map Load Successed!");
-
 		return true;
 	}
 
@@ -412,5 +422,33 @@ namespace RTR
 		};
 
 		::sndPlaySound(GetPath(soundName).c_str(), flag);
+	}
+
+	void GameManager::showInfo(bool showHelp)
+	{
+		if (showHelp)
+		{
+			mScene->drawString("1. W A S D 移动Tank", 10, 10);
+			mScene->drawString("2. <-   -> 瞄准", 10, 30);
+			mScene->drawString("3. Space   发射子弹", 10, 50);
+			mScene->drawString("4. F       切换线框/实体模式", 10, 70);
+			mScene->drawString("5. Y       开启/关闭灯光", 10, 90);
+			mScene->drawString("6. G       切换子弹", 10, 110);
+			mScene->drawString("7. C       切换场景", 10, 130);
+
+			mScene->drawString("当前物体数 : " + IntToString(mScene->getVisibleObjectNumber()), 650, 10, Color(255, 255, 0));
+			mScene->drawString("所有面数 : " + IntToString(mScene->getTotalPolyonNumber()), 650, 30, Color(255, 255, 0));
+			mScene->drawString("可见面数 : " + IntToString(mScene->getVisiblePolyonNumber()), 650, 50, Color(255, 255, 0));
+		}
+		else
+			mScene->drawString("H 显示帮助", 10, 10);
+
+		mScene->drawString("击毁敌人 - " + IntToString(getDestoryEnemyNumber()), 20, 510, Color(255, 255, 0));
+		mScene->drawString("剩余敌人 - " + IntToString(getLastEnemyNumber()), 20, 530, Color(255, 255, 0));
+
+		s32 logicX = mMainPlayer->getPosition()._x;
+		s32 logicZ = mMainPlayer->getPosition()._z;
+		mScene->drawString("GridPos # " + IntToString(logicX) + " : " + IntToString(logicZ), 200, 510, Color(255, 255, 0));
+
 	}
 }

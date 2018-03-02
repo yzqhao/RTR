@@ -51,11 +51,6 @@ namespace RTR
 		// 获取所有(可见/不可见)多边形个数
 		s32 getTotalPolyonNumber() const { return mTotalPolyonNumber; }
 
-		// 创建地形
-		Mesh* createTerrain(const std::string& rawFileName, const std::string &heightMapFileName,
-			f32 uTitle = 1, f32 vTitle = 1, f32 blockSize = 5.0f);
-		Mesh* getTerrain() { return mTerrainMesh; }
-
 		// 更新
 		void update();
 
@@ -63,8 +58,6 @@ namespace RTR
 		std::map<std::string, Mesh*>	mMeshs;
 		std::map<std::string, Mesh*>	mUsedMesh;
 		RenderList4D				*mRenderList;
-
-		Mesh						*mTerrainMesh;
 
 		Camera						*mCamera;
 		bool						mLightEnable;

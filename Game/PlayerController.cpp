@@ -4,11 +4,11 @@
 
 namespace RTR
 {
-	PlayerController::PlayerController(GameManager *gameMgr)
-		: mCurDir(0), mGameMgr(gameMgr), mScene(gameMgr->getSceneManager()), mFireDir(0)
+	PlayerController::PlayerController(Camera* camera, GameManager* gameManager)
+		: mCurDir(0), mFireDir(0)
 	{
-		mCamera = mScene->getCamera();
-		mTank = new Tank("Player", "Green", gameMgr);
+		mCamera = camera;
+		mTank = new Tank("Player", "Green", gameManager);
 	}
 
 	PlayerController:: ~PlayerController()
@@ -55,10 +55,7 @@ namespace RTR
 		}
 		else if (key == 'F')
 		{
-			if (mCamera->getRenderMode() == RENDER_WIRE)
-				mCamera->setRenderMode(RENDER_SOILD);
-			else
-				mCamera->setRenderMode(RENDER_WIRE);
+			mCamera->setRenderMode(mCamera->getRenderMode() == RENDER_WIRE ? RENDER_SOILD : RENDER_WIRE);
 		}
 		else if (key == 'G')
 		{
