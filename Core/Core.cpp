@@ -112,15 +112,6 @@ namespace RTR
 			pos = object->worldPosition;
 		}
 
-		// 这里备份灯光的数据
-		Light *light = NULL;
-		for (lightItr itr = gLights->begin(); itr != gLights->end(); ++itr)
-		{
-			light = *itr;
-			light->transPosition = light->position;
-			light->transDirection = light->direction;
-		}
-
 		Object4D *obj = object;
 		Polyon4D *base;
 		PolyonF4D poly;
@@ -736,7 +727,7 @@ namespace RTR
 		// 这里对灯光位置进行变换, 将其变换到摄像机坐标系下面
 		Matrix mat = camera->mWorldToCamera;
 		// 这里只保留旋转变换, 而不进行平移变换, 否则会出现灯光跟随摄像机移动的效果
-		mat._m[12] = mat._m[12] = mat._m[13] = 0.0f; mat._m[14] = 1.0f;
+		mat._m[12] = mat._m[13] = mat._m[14] = 0.0f; mat._m[15]= 1.0f;
 
 		Light *light = NULL;
 		for (lightItr itr = gLights->begin(); itr != gLights->end(); ++itr)
