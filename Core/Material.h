@@ -1,4 +1,4 @@
-
+﻿
 #ifndef _CORE_MATERIAL_H_
 #define _CORE_MATERIAL_H_
 

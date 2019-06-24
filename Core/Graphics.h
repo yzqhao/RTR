@@ -1,4 +1,4 @@
-
+﻿
 #ifndef _CORE_GRAPHICS_H_
 #define _CORE_GRAPHICS_H_
 
